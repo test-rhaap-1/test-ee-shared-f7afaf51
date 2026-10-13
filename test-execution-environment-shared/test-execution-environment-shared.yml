@@ -1,0 +1,33 @@
+---
+version: 3
+
+images:
+  base_image:
+    name: registry.redhat.io/ansible-automation-platform/ee-minimal-rhel9:2.18
+
+dependencies:
+  python_interpreter:
+    python_path: /usr/bin/python3.12
+
+  system:
+    - git
+    - openssh-clients
+
+  python:
+    - requests>=2.28.0
+    - pyyaml>=6.0
+
+  galaxy:
+    collections:
+      - name: community.crypto
+        version: "2.15.1"
+        type: galaxy
+
+additional_build_steps:
+  prepend_base:
+    - RUN dnf update -y
+  prepend_galaxy:
+    - ARG ANSIBLE_GALAXY_SERVER_PRIVATE_HUB_PUBLISHED_TOKEN
+
+options:
+  package_manager_path: /usr/bin/microdnf
