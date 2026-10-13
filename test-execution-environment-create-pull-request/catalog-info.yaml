@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-execution-environment-create-pull-request
+  description: Test execution environment to create a pull request
+  tags:
+    - execution-environment
+    - test
+    - existing-repo
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/managed-by-location: github.com?repo=test-ee-shared-f7afaf51&owner=test-rhaap-1
+    ansible.io/scm-provider: Github
+    backstage.io/source-template: template:default/ansible-execution-environment-builder-start-from-scratch-test
+spec:
+  type: execution-environment
+  owner: user:default/admin
+  lifecycle: production
